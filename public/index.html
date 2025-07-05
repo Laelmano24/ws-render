@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Teste</title>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+  <h1>Socket.IO Conectado</h1>
+  <input id="msg" placeholder="Mensagem">
+  <button onclick="enviar()">Enviar</button>
+  <ul id="chat"></ul>
+
+  <script>
+    const socket = io('https://websocket-server.onrender.com') // Troque pela sua URL do Render
+
+    socket.on('mensagem', data => {
+      const li = document.createElement('li')
+      li.innerText = data
+      document.getElementById('chat').appendChild(li)
+    })
+
+    function enviar() {
+      const msg = document.getElementById('msg').value
+      socket.emit('mensagem', msg)
+    }
+  </script>
+</body>
+</html>
