@@ -10,9 +10,7 @@ const io = new Server(server, {
   }
 })
 
-app.get('/', (req, res) => {
-  res.send('Servidor Socket.IO está rodando!')
-})
+app.use(express.static("public"))
 
 io.on('connection', socket => {
   console.log('Novo cliente conectado:', socket.id)
